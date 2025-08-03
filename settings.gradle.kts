@@ -1,0 +1,1 @@
+rootProject.name = "gestion-des-notes-Collections-et-exceptions"
