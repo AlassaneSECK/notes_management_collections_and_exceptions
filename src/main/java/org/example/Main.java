@@ -77,8 +77,19 @@ public class Main {
                         int nbrNotes = Integer.parseInt(input.nextLine());
                         for (int i = 0; i < nbrNotes; i++) {
                             System.out.println("Enter note " + (i + 1) + ": ");
-                            double note = Double.parseDouble(input.nextLine());
-                            notesMap.get(theStudent).add(note);
+                            try{
+                                double note = Double.parseDouble(input.nextLine());
+                                if(note >= 0 && note <= 20){
+                                    notesMap.get(theStudent).add(note);
+                                }else{
+                                    System.out.println("Note number must be between 0 and 20");
+                                    i -= 1;
+                                }
+                            }catch (NumberFormatException e){
+                                System.err.println("This is not a number");
+                                i -= 1;
+                            }
+
                         }
                     }else {
                         System.out.println("Student not found.");
@@ -93,20 +104,27 @@ public class Main {
                 case 4:
                     System.out.println("-- ALL STUDENTS WITH AVERAGE NOTES --");
                     for (Map.Entry<Student, ArrayList<Double>> entry : notesMap.entrySet()) {
-                        System.out.println(entry.getKey().getFirstName() + " " + entry.getKey().getLastName() + " average: ");
-                        double general_average = 0;
-                        for (Double note : entry.getValue()) {
-                            general_average += note;
+                        if (!entry.getValue().isEmpty()){
+                            System.out.println(entry.getKey().getFirstName() + " " + entry.getKey().getLastName() + " average: ");
+                            double general_average = 0;
+                            for (Double note : entry.getValue()) {
+                                general_average += note;
+                            }
+                            general_average /= entry.getValue().size();
+                            System.out.println(general_average);
+                        }else{
+                            System.out.println("No notes found.");
                         }
-                        general_average /= entry.getValue().size();
-                        System.out.println(general_average);
                     }
                     break;
                    case 5:
-                       System.out.println("Enter student name: ");
-                       String studentResearchedName = input.nextLine();
+                       System.out.println("Enter student first name: ");
+                       String studentResearchedFirstName = input.nextLine();
+                       System.out.println("Enter student last name: ");
+                       String studentResearchedLastName = input.nextLine();
                        for(Map.Entry<Student, ArrayList<Double>> entry : notesMap.entrySet()){
-                           if(entry.getKey().getFirstName().equalsIgnoreCase(studentResearchedName)){
+                           if(entry.getKey().getFirstName().equalsIgnoreCase(studentResearchedFirstName)
+                           && entry.getKey().getLastName().equalsIgnoreCase(studentResearchedLastName)){
                                System.out.println("-- STUDENT FOUND AND HER NOTES --");
                                System.out.println(entry.getKey().getFirstName() + " " + entry.getKey().getLastName() + " - " + entry.getValue());
                            }
