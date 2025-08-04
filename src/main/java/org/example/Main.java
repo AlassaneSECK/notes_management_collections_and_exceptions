@@ -11,9 +11,9 @@ public class Main {
             System.out.println("-- NOTES MANAGER --");
             System.out.println("1. Add student");
             System.out.println("2. Add notes for a student");
-            System.out.println("3. Display a student's notes");
+            System.out.println("3. Show all students and their notes");
             System.out.println("4. Calculate a student's average");
-            System.out.println("5. Show all students and their notes");
+            System.out.println("5. Search one student");
             System.out.println("6. Exit");
 
             System.out.println("Enter your choice: ");
@@ -102,6 +102,15 @@ public class Main {
                         System.out.println(general_average);
                     }
                     break;
+                   case 5:
+                       System.out.println("Enter student name: ");
+                       String studentResearchedName = input.nextLine();
+                       for(Map.Entry<Student, ArrayList<Double>> entry : notesMap.entrySet()){
+                           if(entry.getKey().getFirstName().equalsIgnoreCase(studentResearchedName)){
+                               System.out.println("-- STUDENT FOUND AND HER NOTES --");
+                               System.out.println(entry.getKey().getFirstName() + " " + entry.getKey().getLastName() + " - " + entry.getValue());
+                           }
+                       }
             }
         }
         input.close();
