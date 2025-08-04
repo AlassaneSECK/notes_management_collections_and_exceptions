@@ -32,6 +32,9 @@ public class FileManagementTest {
         }
 
         // Cleaning : Delete file test after the test
-        new File(fileName).delete();
+        File file = new File(fileName);
+        if (!file.delete()) {
+            System.err.println("Could not delete file: " + fileName);
+        }
     }
 }
