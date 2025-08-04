@@ -19,6 +19,7 @@ public class FileManagement {
                     writer.print(notes.get(i));
                     if(i != notes.size() - 1) writer.print(",");
                 }
+                writer.println();
             }
             System.out.println("Save complete.");
         }catch (Exception e){
