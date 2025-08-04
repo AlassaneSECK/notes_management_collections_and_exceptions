@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class FileManagement {
     public static void saveToFile(Map<Student, ArrayList<Double>> notesMap, String fileName){
-        try(PrintWriter writer = new PrintWriter(new File(fileName))){
+        try(PrintWriter writer = new PrintWriter(fileName)){
             for(Map.Entry<Student, ArrayList<Double>> entry : notesMap.entrySet()){
                 Student student = entry.getKey();
                 ArrayList<Double> notes = entry.getValue();
@@ -35,6 +35,9 @@ public class FileManagement {
                 if(lineSplit.length == 2){
                     String firstName = lineSplit[0];
                     String lastName = lineSplit[1];
+                    ArrayList<Double> notes = new ArrayList<>();
+                    Student student = new Student(firstName, lastName);
+                    notesMap.put(student, notes);
                 } else if (lineSplit.length == 3) {
                     String firstName = lineSplit[0];
                     String lastName = lineSplit[1];
