@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.util.*;
 
 public class Main {
@@ -14,7 +15,9 @@ public class Main {
             System.out.println("3. Show all students and their notes");
             System.out.println("4. Calculate a student's average");
             System.out.println("5. Search one student");
-            System.out.println("6. Exit");
+            System.out.println("6. Save notes to file");
+            System.out.println("7. Restore notes from a file");
+            System.out.println("8. Exit");
 
             System.out.println("Enter your choice: ");
             try {
@@ -23,7 +26,7 @@ public class Main {
                 System.err.println("Invalid input");
                 continue;
             }
-            if(choice==6){
+            if(choice==8){
                 break;
             }
             switch(choice){
@@ -129,6 +132,12 @@ public class Main {
                                System.out.println(entry.getKey().getFirstName() + " " + entry.getKey().getLastName() + " - " + entry.getValue());
                            }
                        }
+                       break;
+                   case 6:
+                       FileManagement.saveToFile(notesMap, "notes.txt");
+                       break;
+                   case 7:
+                       notesMap = FileManagement.restoreFromFile("notes.txt");
             }
         }
         input.close();
