@@ -23,7 +23,7 @@ public class FileManagement {
             }
             System.out.println("Save complete.");
         }catch (Exception e){
-            System.err.println("Error saving notes to file" + e.getMessage());
+            System.err.println("Error saving notes to file : " + e.getMessage());
         }
     }
 
