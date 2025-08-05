@@ -48,8 +48,10 @@ jobs:
 
     needs: [build, test]
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Affiche la liste des fichiers
-        run: echo ls -l
+        run: ls -l
       - name: Build runnable JAR
         run: chmod +x ./gradlew && ./gradlew jar
       - name: Upload artifact
