@@ -75,3 +75,18 @@ jobs:
         with:
           name: 'students management jar'
           path: build/libs/*.jar
+
+  javadoc:
+    runs-on: ubuntu-latest
+
+    needs: executable
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Generate Javadoc
+        run: chmod +x ./gradlew && ./gradlew javadoc
+      - name: Javadoc
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'Javadoc'
+          path: build/docs/javadoc
