@@ -49,7 +49,7 @@ jobs:
     needs: [build, test]
     steps:
       - name: Affiche la liste des fichiers
-        run: ls -l
+        run: echo ls -l
       - name: Build runnable JAR
         run: chmod +x ./gradlew && ./gradlew jar
       - name: Upload artifact
